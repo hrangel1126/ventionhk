@@ -10,9 +10,10 @@
 [Live demo](TBD)
 
 ## Enviroment Requirements
-Reuirement
 - Node 18.20.3
-- typescript@^5
+- typescript@^5/typescript@5.5.4
+- npm@10.7.0
+
 ## Getting started
 Run the following commands in your project folder to get started:
 ```console
@@ -255,6 +256,3 @@ If you find that something isn't working right then I'm always happy to hear it 
 
 ## Thank you!
 
-A big thank you to the creators of the awesome Astro static site generator and to all using this starter to make the web a bit more accessible for all people around the world :)
-
-[![buymeacoffee-button](https://user-images.githubusercontent.com/3909046/150683481-be070424-7bb0-4dd7-a3cb-43b5605163f5.png)](https://www.buymeacoffee.com/markteekman)
