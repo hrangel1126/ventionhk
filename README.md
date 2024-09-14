@@ -9,10 +9,11 @@
 
 [Live demo](TBD)
 
-## Getting started
+## Enviroment Requirements
 Reuirement
 - Node 18.20.3
 - typescript@^5
+## Getting started
 Run the following commands in your project folder to get started:
 ```console
 npm install && npm run dev
