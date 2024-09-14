@@ -1,6 +1,7 @@
 ---
 import { Notification } from 'accessible-astro-components'
 import { Icon } from 'astro-icon'
+
 ---
 
 <form class="login-form space-content" method="post">
@@ -25,11 +26,13 @@ import { Icon } from 'astro-icon'
 
 <script>
   // variables
-  const form = document.querySelector('.login-form')
-  const notification = form.querySelector('.notification')
-  const emailInput = form.querySelector('input[name="email"]')
-  const passwordInput = form.querySelector('input[name="password"]')
-  const submitButton = form.querySelector('button')
+  var form:any;
+
+  form = document.querySelector('.login-form')
+  const notification:any = form.querySelector('.notification')
+  const emailInput:any = form.querySelector('input[name="email"]')
+  const passwordInput:any = form.querySelector('input[name="password"]')
+  const submitButton:any = form.querySelector('button')
 
   // execution
   notification.style.display = 'none'
@@ -37,7 +40,7 @@ import { Icon } from 'astro-icon'
   submitButton.addEventListener('click', event => {
     event.preventDefault()
 
-    if (emailInput.value === 'admin@astro.demo' && passwordInput.value === 'Astronaut570') {
+    if (emailInput.value === 'hackaton@ventionteams' && passwordInput.value === 'Vention2024') {
       localStorage.setItem('isLoggedIn', 'true')
       window.location.href = '/'
     } else {

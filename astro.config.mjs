@@ -1,4 +1,9 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({})
+import analogjsangular from "@analogjs/astro-angular";
+
+// https://astro.build/config
+export default defineConfig({
+  integrations: [analogjsangular()]
+});

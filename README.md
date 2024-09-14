@@ -5,9 +5,14 @@ This Dashboard theme is build upon the (awesome) [Astro Static Site Builder](htt
 [Live demo](https://accessible-astro-dashboard.netlify.app)
 
 ## Getting started
+Reuirement
+**Node 18.20.3**
+**typescript@^5**
 Run the following commands in your project folder to get started:
 ```console
 npm install && npm start
+OR
+npom install && npm run dev
 ```
 
 ## (Accessibility) features
@@ -39,17 +44,13 @@ npm install && npm start
 
 ## Login & Authentication
 
-This starter contains a basic example of authentication and redirecting based on a users logged in status. However, this is done using SSG, which is not ideal, but serves the purpose of this demo. For better authentication and redirecting you should use [Astro's (experimental) SSR](https://docs.astro.build/en/guides/server-side-rendering/).
-
-### Enabling SSR
-
-For the purpose of the demo I have not enabled SSR, simply due to the fact how I've setup the demo websites of all [accessible-astro.dev](https://accessible-astro.dev) subdomains. However, I might add it in the future. It is the preferred way to handle your login and redirect cases.
+This POC contains a basic example of authentication and redirecting based on a users logged in status. However, this is done using SSG, which is not ideal, but serves the purpose of this demo. For better authentication and redirecting you should use [Astro's (experimental) SSR](https://docs.astro.build/en/guides/server-side-rendering/).
 
 ### LoginForm.astro
 
 This theme contains an example login flow, using a fake email address and password and by utilizing the `localStorage`. All pages redirect to `/login.astro` if you haven't logged in. After logging in the value `isLoggedIn` is set to `true` and your authenticated to view the admin pages. When building this using SSR you should use `cookies` instead of the `localStorage`.
 
-⚠️ **Note: this is just an example, make sure you build your own secure authentication. Checkout this [official Astro Blog post](https://astro.build/blog/experimental-server-side-rendering/) for more information about authentication and login.**
+⚠️ **Note: this is just an example POC for Vention Hacakton, make sure you are aware no secure authentication is done.**
 
 ```js
 <script>
