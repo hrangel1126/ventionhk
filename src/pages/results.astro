@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import {CandidatesList} from "../components/AngListCandidates/CandidatesList";
 ---
 
 <DefaultLayout title="Results">
@@ -7,10 +8,9 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     <h1>Our results 🧑‍🚀</h1>
     <p class="size-20">These are results</p>
   </section>
+  <h2>Results</h2>
   <section class="margin-32">
-    <div class="space-content">
-  <h1>REsultadpos</h1>
-    </div>
+    <CandidatesList client:visible client:only />
   </section>
   <section>
     </section>
