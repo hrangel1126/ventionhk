@@ -1,6 +1,6 @@
 
 // engineers-list.component.ts
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {CommonModule, NgFor, NgIf} from "@angular/common";
@@ -25,6 +25,8 @@ interface Engineer {
     imports: [NgIf, CommonModule, NgFor, CandidateCard]
 })
 export class CandidatesList implements OnInit {
+    @Input() filterIndex = -1
+
     private allMeta$ = new BehaviorSubject([])
     currentMeta$: Observable<any>
     private engineersSubject = new BehaviorSubject<Engineer[][]>([]);
@@ -50,7 +52,12 @@ export class CandidatesList implements OnInit {
         try {
             const list = this.loadEngineers();
             this.engineersSubject.next(list);
-            this.currentIndex = list.length - 1;
+            if (this.filterIndex === -1) {
+                this.currentIndex = list.length - 1;
+            } else {
+                this.currentIndex = this.filterIndex
+            }
+            console.log({ filterIndex: this.filterIndex, current: this.currentIndex })
             const allMeta = this.allMeta$.getValue()
             this.currentMeta$ = this.allMeta$.pipe(
                 map(metaDataList => metaDataList[this.currentIndex] || {})

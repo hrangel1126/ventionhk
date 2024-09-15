@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import {CandidatesList} from "../components/AngListCandidates/CandidatesList";
+const filter = Astro.url.searchParams.get('filter') || -1;
 ---
 
 <DefaultLayout title="Results">
@@ -10,7 +11,7 @@ import {CandidatesList} from "../components/AngListCandidates/CandidatesList";
   </section>
   <h2>Results</h2>
   <section class="margin-32">
-    <CandidatesList client:visible client:only />
+    <CandidatesList client:visible client:only filterIndex={filter} />
   </section>
   <section>
     </section>
