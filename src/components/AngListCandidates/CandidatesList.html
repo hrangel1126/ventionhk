@@ -1,0 +1,25 @@
+<!-- engineers-list.component.html -->
+
+<section *ngIf="currentMeta$ | async as metadata">
+<div class="opportunity-info">
+    <p class="card__reason"><strong>Reason:</strong> {{ metadata.reason }}</p>
+    <p class="card__inquiry"><strong>Inquiry:</strong> {{ metadata.inquery }}</p>
+    <p class="card__team-cost"><strong>Cost of Team:</strong> {{ metadata.costOfTeam }}</p>
+</div>
+
+</section>
+<section class="margin-32">
+    <div class="engineer-cards">
+        <div class="space-content">
+            <div *ngIf="loading">Loading...</div>
+            <div *ngIf="error">Error: {{ error }}</div>
+            <ng-container *ngIf="!(loading || error)">
+                <app-engineer-card *ngFor="let engineer of engineers$ | async" [engineer]="engineer"></app-engineer-card>
+            </ng-container>
+        </div>
+        <div class="navigation">
+            <button (click)="prev()">Previous</button>
+            <button (click)="next()">Next</button>
+        </div>
+    </div>
+</section>
