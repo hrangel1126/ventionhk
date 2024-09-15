@@ -94,7 +94,7 @@ const logo = await import('../assets/img/logo.svg');
 
   const collapseMenu = () => {
     mainNav.classList.remove('is-expanded')
-    localStorage.setItem('isMenuExpanded', null)
+    localStorage.setItem('isMenuExpanded', 'false')
     toggleExpandedView.setAttribute('aria-expanded', 'false')
     toggleExpandedView.querySelector('span').textContent = 'Expand menu'
     

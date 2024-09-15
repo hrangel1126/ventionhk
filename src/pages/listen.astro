@@ -2,19 +2,36 @@
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import EmpyState from '../components/EmpyState.astro'
 import { Modal } from 'accessible-astro-components'
+import {AlertComponent } from '../components/alert.component';
+import { computed } from 'nanostores'
+import {$alertstate} from '../shared/shared';
+import {AngSpeachtoText} from '../components/AngSpeachtoText/AngSpeachtoText';
+import Icon from 'astro-icon';
+const { show } = Astro.props
+
+let toshow:boolean = false;
+
+function test(){
+toshow = !toshow;
+console.log('toshow ',toshow);
+}
 ---
 
 <DefaultLayout title="Products">
   <section>
-    <h1>Products</h1><br>
-    <p class="size-20">Lorem ipsum dolor sit amet.</p>
+    <h1>Ready to evaluate the request</h1><br>
   </section>
   <section class="margin-32">
+
     <div class="space-content">
-      <h2>Product overview</h2>
+      <h2>Analisys type</h2>
+      <AngSpeachtoText client:visible client:only/>
+
       <EmpyState>
         You haven't added any products yet. Start by adding some.
       </EmpyState>
+      <button ></button>
+
       <button id="modal-trigger" class="button color-secondary">Add your first product</button>
       <Modal
         triggerId="modal-trigger"
