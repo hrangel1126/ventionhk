@@ -15,7 +15,7 @@
 </div>
 <br>
 <div class="row" style="text-align: center;">
-      <p class="size-20"  *ngIf="wave">System will take notes for you, to finish say finalize or press STOP button</p>
+      <p class="size-20"  *ngIf="wave">System will take notes for you, to finish say <b>finalize</b> or <b>press finalize</b> button</p>
       <span *ngIf="wave">Listening...</span>
       <div class="col-md-12">
      
@@ -64,7 +64,7 @@
       </div>
 </div>
 <div class="row">
-      <p class="size-20">Detail the bussiness oipportunity or paste project scope.</p>
+      <p class="size-20">Detail the bussiness opportunity or paste project scope.</p>
       <div class="col-md-12">
             <label for="speachtxt">Enter scope or details</label>
             <mat-form-field [style.fontSize]="12" style="width: 100%;">
@@ -82,7 +82,7 @@
       </div>
 
 </div>
-<button *ngIf="!wave" class="button-3" role="button" (click)="run()">Process</button>
+<button *ngIf="!wave" class="button-3" role="button" (click)="run()" style="width: 10rem;height: 3rem;">Process</button>
 
       </div>
 
