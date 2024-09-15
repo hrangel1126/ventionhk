@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import {ResultsComponent} from '../components/Results/Results.component';
 ---
 
 <DefaultLayout title="Results">
@@ -12,6 +13,9 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
   <h1>REsultadpos</h1>
     </div>
   </section>
+  <section>
+    <ResultsComponent client:visible  />
+    </section>
 </DefaultLayout>
 
 <style>

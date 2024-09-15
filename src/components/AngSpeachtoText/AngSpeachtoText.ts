@@ -67,21 +67,16 @@ currentsaved:any[]=[];
     }
    }
   ngOnInit():void {
+    // check if previus saved session to get new index
     this.getsaved();
-    console.log('speach test', this.currentsaved?.length);
+
     if ('webkitSpeechRecognition' in window) {
       this.CanListening = true;
       this.vSearch = new webkitSpeechRecognition();
     }
 
   }
-
-  al(state:any){
-    console.log('state ',state);
-    if(state){
-
-    }
-  }
+// toggle to use dictation speach recognition
   change(state:any){
     if(state)
     Swal.fire({
@@ -105,7 +100,7 @@ currentsaved:any[]=[];
     });
   }
 
-  
+  // start listening calling handler
   startListening() {
     // let voiceHandler = this.hiddenSearchHandler?.nativeElement;
     if ( this.CanListening ) {
@@ -168,7 +163,7 @@ currentsaved:any[]=[];
     }
  
   }
-
+// stop listening
   stopListening(){
     this.vSearch.stop();
     this.Listening_state.listening = false;
@@ -188,7 +183,7 @@ currentsaved:any[]=[];
   
 
 
-
+// resize the textbox with the speach recognitaion results
   triggerResize() {
     // Wait for content to render, then trigger textarea resize.
     afterNextRender(
@@ -202,37 +197,37 @@ currentsaved:any[]=[];
   }
 
   getsaved(){
-  //  return JSON.parse(localStorage.getItem('ReqData') || '{}');
 
   let newObject:any = localStorage.getItem("ReqData");
   console.log(JSON.parse(newObject));
   this.currentsaved.push(JSON.parse(newObject))
   }
-  saverequest(){
-    var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+  // save to local storage tests
+//   saverequest(){
+//     var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
-        const ReqData = {
-        id: this.currentsaved?.length,
-        data: this.speachtxt.nativeElement.value,
-        processed: true,
-        timestamp:utc
-    };
-    this.currentsaved.push(ReqData);
-    // Store the object into storage
-localStorage.setItem("ReqData", JSON.stringify(ReqData));
-  }
-testsave(){
-  let newObject:any = localStorage.getItem("ReqData");
-  console.log(JSON.parse(newObject));
-if(newObject == null){
-  newObject = '{"ReqData":[]}';
+//         const ReqData = {
+//         id: this.currentsaved?.length,
+//         data: this.speachtxt.nativeElement.value,
+//         processed: true,
+//         timestamp:utc
+//     };
+//     this.currentsaved.push(ReqData);
+//     // Store the object into storage
+// localStorage.setItem("ReqData", JSON.stringify(ReqData));
+//   }
+// testsave(){
+//   let newObject:any = localStorage.getItem("ReqData");
+//   console.log(JSON.parse(newObject));
+// if(newObject == null){
+//   newObject = '{"ReqData":[]}';
 
-}
-var obj = JSON.parse(newObject);
-obj['ReqData'].push({"teamId":"09","status":"pending"});
-newObject = JSON.stringify(obj);
-localStorage.setItem("ReqData", newObject);
-}
+// }
+// var obj = JSON.parse(newObject);
+// obj['ReqData'].push({"teamId":"09","status":"pending"});
+// newObject = JSON.stringify(obj);
+// localStorage.setItem("ReqData", newObject);
+// }
 telo(){
   Swal.fire({
     title: "Processing...",

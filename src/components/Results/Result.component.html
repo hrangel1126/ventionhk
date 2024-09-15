@@ -1,0 +1,17 @@
+<div class="container">
+
+<span class="loader" style="width: 300px;"></span>
+<div *ngIf="currentsaved[0].ReqData >= 0">
+    <h2>{{currentsaved.name | uppercase}} Details</h2>
+    <div>id: {{selectedHero.id}}</div>
+    <div>
+      <label for="hero-name">Hero name: </label>
+      <input id="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+    </div>
+  </div>
+  <div *ngIf="currentsaved[0].ReqData == 0">
+<h3>No saved data yet</h3>
+  </div>
+
+
+</div>
