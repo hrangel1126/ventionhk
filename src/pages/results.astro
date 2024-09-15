@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import {ResultsComponent} from '../components/Results/Results.component';
+import {CandidatesList} from "../components/AngListCandidates/CandidatesList";
 ---
 
 <DefaultLayout title="Results">
@@ -11,6 +11,7 @@ import {ResultsComponent} from '../components/Results/Results.component';
   <section class="margin-32">
     <div class="space-content">
   <h1>REsultadpos</h1>
+      <CandidatesList client:visible client:only />
     </div>
   </section>
   <section>
