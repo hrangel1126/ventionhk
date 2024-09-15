@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
 <span class="loader" style="width: 300px;"></span>
 <div *ngIf="currentsaved[0].ReqData >= 0">
@@ -12,6 +12,40 @@
   <div *ngIf="currentsaved[0].ReqData == 0">
 <h3>No saved data yet</h3>
   </div>
+  <ul class="heroes">
+  <li *ngFor="let inq of currentsaved[0].ReqData;  let i = index;">
+    <div *ngIf="inq">
+        <h2>ID Req{{10 + i }} Details</h2>
+        <div>Request: {{inq.inquery}}</div>
+        <div>
 
+        </div>
+      </div>
 
-</div>
+  </li>
+</ul>
+</div> -->
+
+    <div class="items" >
+      <div class="items-head">
+        <p>Inqueries Processed</p>
+        <hr>
+      </div>
+      
+      <div class="items-body" >
+        <div class="items-body-content" *ngFor="let inq of currentsaved[0].ReqData;  let i = index;">
+          <span>ID {{10 + i }}: {{inq.inquery.substring(0,35)}}</span>
+          <i class="fa fa-angle-right"></i>
+        </div>
+      </div>
+   
+    </div>
+    <div class="items" *ngIf="currentsaved[0].ReqData >= 0" >
+        <div class="items-head">
+          <p>Inqueries Processed</p>
+          <hr>
+        </div>
+    <div class="items-body" *ngIf="currentsaved[0].ReqData == 0">
+        <h3>No saved data yet</h3>
+      </div>
+    </div>
