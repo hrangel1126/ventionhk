@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import EngineersList from '../components/Engineers/List.jsx'
 ---
 
 <DefaultLayout title="Results">
@@ -8,16 +9,7 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
     <p class="size-20">These are results</p>
   </section>
   <section class="margin-32">
-    <div class="space-content">
-  <h1>REsultadpos</h1>
-    </div>
+    <h1>Results</h1>
+    <EngineersList client:visible client:only="react"/>
   </section>
 </DefaultLayout>
-
-<style>
-  .space-content{
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 2rem;
-  }
-</style>
