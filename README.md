@@ -9,7 +9,7 @@ Automatically matches pre-vetted engineers with opportunities or client needs ba
 - 1.3- Analyze opportunity descriptions and needs against resumes, ensuring a near-perfect match for every position.
 - 1.4- improving placement accuracy, enhancing the client experience.
 
-[Live demo]('https://hackathon-vention-24.vercel.app/login/')
+[Live demo](https://hackathon-vention-24.vercel.app/login/)
 
 ## Enviroment Requirements
 
