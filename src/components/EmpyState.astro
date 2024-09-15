@@ -1,9 +1,13 @@
 ---
 import { Notification } from 'accessible-astro-components'
 import { Icon } from 'astro-icon'
+// interface Props {
+//   show: boolean;
+// }
+
+// const { show } = Astro.props;
 ---
 
 <Notification type="info">
-  <Icon pack="majesticons" name="academic-cap-line" />
-  <slot />
+  <Icon name="line-md:check-list-3-twotone" />    <slot />
 </Notification>

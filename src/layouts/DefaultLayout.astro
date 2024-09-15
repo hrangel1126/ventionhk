@@ -53,24 +53,6 @@ let subtitle = 'Accessible Astro Dashboard'
             <span class="sr-only">Evaluate</span>
           </a>
         </li>
-        <li class="menu-item">
-          <a href="/users/">
-            <Icon pack="majesticons" name="users-line" /> 
-            <span class="sr-only">Users</span>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/messages/">
-            <Icon pack="majesticons" name="messages-line" /> 
-            <span class="sr-only">Messages</span>
-          </a>
-        </li>
-        <li class="menu-item">
-          <a href="/media/">
-            <Icon pack="majesticons" name="image-line" /> 
-            <span class="sr-only">Media</span>
-          </a>
-        </li>
       </Navigation>    
       <main id="main-content">
         <slot />
@@ -111,7 +93,7 @@ let subtitle = 'Accessible Astro Dashboard'
 
       @include breakpoint(medium) {
         margin-left: 60px;
-        padding: 6rem;
+        padding: 2rem;
       }
     }
   }

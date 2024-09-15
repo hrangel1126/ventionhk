@@ -1,45 +1,37 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import DashboardWidget from '../components/DashboardWidget.astro';
+import engineersData from '../assets/json/engineers.json';
+import CardEngineer from '../components/cardEngineer.astro';
 ---
-
 <DefaultLayout title="Dashboard">
   <section>
-    <h1>Sales Copilot 🧑‍🚀</h1><br>
-    <p class="size-20">Build fast estimations, faster (and accessible).</p>
+    <h1>Our team 🧑‍🚀</h1>
+    <p class="size-20">These are our available talented engineers</p>
   </section>
   <section class="margin-32">
     <div class="space-content">
-      <div class="contents">
-        <h2>Latest work..</h2>
-        <p id="current-time" class="size-12"></p>
-      </div>
-      <div class="grid small-grid-1 medium-grid-2 large-grid-3 equal-height">
-        <DashboardWidget />
-        <DashboardWidget
-          number="+33"
-          title="Products sold"
-        />
-        <DashboardWidget
-          number="-120"
-          title="Images deleted"
-          type="error"
-        />
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-        <div class="radius-large space-96" style="border: 4px dashed grey;"></div>
-      </div>
+      {
+        engineersData.map((ele) => (
+          <CardEngineer
+            name={ele.name}
+  role={ele.role}
+  experience={ele.experience}
+  techStack={ele.techStack}
+  hourRate={ele.hourRate}
+  generalSummary={ele.generalSummary}
+  
+           />
+        ))
+      }
     </div>
   </section>
 </DefaultLayout>
 
-<script>
-  const date = new Date()
-  document.querySelector('#current-time')!.innerHTML = `<em>${date.toDateString()}</em>`
-</script>
+<style>
+  .space-content{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 2rem;
+  }
+</style>

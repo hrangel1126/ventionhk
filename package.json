@@ -25,6 +25,7 @@
     "@angular/platform-browser": "^18.2.4",
     "@angular/platform-browser-dynamic": "^18.2.4",
     "@angular/platform-server": "^18.2.4",
+    "@astrojs/db": "^0.14.1",
     "@astrojs/node": "^8.3.3",
     "@astrojs/vercel": "^7.8.1",
     "accessible-astro-components": "^1.5.7",

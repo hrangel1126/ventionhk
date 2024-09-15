@@ -11,9 +11,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import Swal from 'sweetalert2' //external alert for beutifier
 import { FormsModule } from '@angular/forms';
-
+import { notice } from '.././../shared/shared';
 declare var webkitSpeechRecognition:any;
 declare var webkitSpeechGrammarList:any;
+declare var document: Document;
 
 declare var global:any;
 
@@ -31,9 +32,14 @@ declare var global:any;
 export class AngSpeachtoText  implements OnInit {
     @ViewChild('diagnostic') diagnostic!: ElementRef;
     @ViewChild('autosize') autosize: CdkTextareaAutosize;
+    @ViewChild('speachtxt', {read: ElementRef}) speachtxt: ElementRef;
+
+
     // start listening animations vars
   countd:boolean = false;
   wave:boolean = false;
+  save:boolean = true;
+
   // injector to resize the textarea
     private _injector = inject(Injector);
     // delceare the speach synthesis
@@ -47,6 +53,9 @@ export class AngSpeachtoText  implements OnInit {
   Listening_state = {
     listening: false
   }
+// save local
+dbindex:number =0;
+currentsaved:any[]=[];
   // Grammar to search for specific words incase some techs are not understaded by speach recognition HR
   // also achonyms can be added for better understanding atc..
   word = [ 'finalize' , 'DevOps' , 'Angular', 'Fintech', 'React', 'Pyhton', 'Agile', 'PMP', 'MongoDB' ];
@@ -58,7 +67,8 @@ export class AngSpeachtoText  implements OnInit {
     }
    }
   ngOnInit():void {
-    console.log('speach test');
+    this.getsaved();
+    console.log('speach test', this.currentsaved?.length);
     if ('webkitSpeechRecognition' in window) {
       this.CanListening = true;
       this.vSearch = new webkitSpeechRecognition();
@@ -118,39 +128,22 @@ export class AngSpeachtoText  implements OnInit {
           };
         this.vSearch.stop();
       };
+      this.speachtxt.nativeElement.value == 0 ? this.speachtxt.nativeElement.value = '' : this.speachtxt.nativeElement.value =+ ' ';
       this.vSearch.onresult = (result:any) => {
         let interim_transcript = "";
         console.log('undesrsta ', result.results);
-        // Loop through the results from the speech recognition object.
-         this.final_transcript = '';
-        // this.theScope += this.final_transcript;
-        this.theScope += this.theScope;
-        for (const res of result.results) {
-           console.log('asdasd ', res[0].transcript);
-          // this.final_transcript += res[0].transcript +'\r\n';
-          this.final_transcript = res[0].transcript +'\r\n';
-
-          
-
-          // if (res.isFinal) {
-          //       this.final_transcript = res[0].transcript +'\r\n';
-          //       this.theScope = this.final_transcript
-          //     } 
-              // else {
-              //   interim_transcript += res[0].transcript +'\r\n';
-              // }
-              let x:string = res[0].transcript;
+        this.speachtxt.nativeElement.value += result.results[result.results.length-1][0].transcript  +'\r\n';
+              let x:string = result.results[result.results.length-1][0].transcript;
              if(x.toLowerCase().search(/finalize/) !== -1){
               console.log("Stopped listening per voice command")
               this.Listening_state.listening = false;
               this.vSearch.stop();
               this.wave = false;
+              this.save = false;
+              notice.set(true);
+              
+              console.log(this.save );
              }
-        }
-        this.theScope += this.final_transcript ;
-        console.log('final ',  this.final_transcript );
-
-
     };
       this.vSearch.addEventListener('end', () => {
         console.log("Stopped checking")
@@ -180,37 +173,21 @@ export class AngSpeachtoText  implements OnInit {
     this.vSearch.stop();
     this.Listening_state.listening = false;
     this.wave = false;
-   
     this.vSearch.onend = () => {
       if( !this.Listening_state.listening ){
-      console.log("Stopped listening per click")
+        this.save = false;
+        notice.set(true);
+       
+        console.log(this.save );
+
+        console.log("Stopped listening per click");
       }
     }
   }
 
   
-speak(){
-let utterThis = new SpeechSynthesisUtterance("Hello I'm your assistant, can you please let me know your exprience in react, declare your past projects, what stack you yoused and process or fucntions");
-// this.synth.speak(utterThis);
 
-}
-// start(text?: string, rate = 1) {
 
-//     text = "Hello I'm your assistant, can you please let me know your exprience in react, declare your past projects, what stack you yoused and process or fucntions";
-//     const textToSpeech = new SpeechSynthesisUtterance(text);
-//     textToSpeech.lang = "en-EN";
-//     textToSpeech.text = text;
-//     textToSpeech.rate = rate;
-    
-
-//     const voice = speechSynthesis.getVoices().filter((voice) => {
-//       return voice.name === "Google English";
-//     })[0];
-//     textToSpeech.voice = voice;
-
-//     this.synthesis.speak(textToSpeech);
-
-//   }
 
   triggerResize() {
     // Wait for content to render, then trigger textarea resize.
@@ -223,5 +200,97 @@ let utterThis = new SpeechSynthesisUtterance("Hello I'm your assistant, can you 
       },
     );
   }
+
+  getsaved(){
+  //  return JSON.parse(localStorage.getItem('ReqData') || '{}');
+
+  let newObject:any = localStorage.getItem("ReqData");
+  console.log(JSON.parse(newObject));
+  this.currentsaved.push(JSON.parse(newObject))
+  }
+  saverequest(){
+    var utc = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+
+        const ReqData = {
+        id: this.currentsaved?.length,
+        data: this.speachtxt.nativeElement.value,
+        processed: true,
+        timestamp:utc
+    };
+    this.currentsaved.push(ReqData);
+    // Store the object into storage
+localStorage.setItem("ReqData", JSON.stringify(ReqData));
+  }
+testsave(){
+  let newObject:any = localStorage.getItem("ReqData");
+  console.log(JSON.parse(newObject));
+if(newObject == null){
+  newObject = '{"ReqData":[]}';
+
 }
+var obj = JSON.parse(newObject);
+obj['ReqData'].push({"teamId":"09","status":"pending"});
+newObject = JSON.stringify(obj);
+localStorage.setItem("ReqData", newObject);
+}
+telo(){
+  Swal.fire({
+    title: "Processing...",
+    imageUrl: "/loading.gif",
+    imageWidth: 300,
+    imageHeight: 350,
+    imageAlt: "Processing...",
+    showCancelButton: false,
+    showConfirmButton: false,
+  });
+}
+  run(){
+    Swal.fire({
+      title: "Processing...",
+      imageUrl: "/loading.gif",
+      imageWidth: 300,
+      imageHeight: 350,
+      imageAlt: "Processing...",
+      showCancelButton: false,
+      showConfirmButton: false,
+    });
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({transcription: this.speachtxt.nativeElement.value })
+    };
+     
+    fetch('/api/analytics', options)
+      .then((response) => {
+        const fdata = response.json();
+        console.log('priemr then ', fdata);
+        return fdata;
+      })
+      .then((response) => {
+        console.log('priemr sec ', response);
+    
+        let newObject:any = localStorage.getItem("ReqData");
+            console.log(JSON.parse(newObject));
+          if(newObject == null){
+            newObject = '{"ReqData":[]}';
+          }
+          var obj = JSON.parse(newObject);
+          response.inquery = this.speachtxt.nativeElement.value;
+          obj['ReqData'].push(response);
+          newObject = JSON.stringify(obj);
+          localStorage.setItem("ReqData", newObject);
+        console.log(response)
+        Swal.close();
+        setTimeout(() => {
+           window.location.href = '/results'
+        }, 1000);
+         
+  })
+      .catch((err) => {
+        console.error(err);
+        Swal.close();
+      });
+  }
+}
+
 

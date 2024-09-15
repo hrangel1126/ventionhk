@@ -1,11 +1,13 @@
-import { Component, Output, EventEmitter} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Output, EventEmitter, Input} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'toggle-button',
   standalone: true,
   template: `
     <input type="checkbox" id="toggle-button-checkbox"
-      (change)="changed.emit($any($event.target)?.checked)">
+     [(ngModel)]="checked" (change)="changed.emit($any($event.target)?.checked)">
     <label class="toggle-button-switch"  
       for="toggle-button-checkbox"></label>
     <div class="toggle-button-text">
@@ -13,6 +15,7 @@ import { Component, Output, EventEmitter} from '@angular/core';
       <div class="toggle-button-text-off">OFF</div>
     </div>
   `,
+  imports: [FormsModule],
   styles: [`
     :host {
       display: block;
@@ -74,4 +77,5 @@ import { Component, Output, EventEmitter} from '@angular/core';
 })
 export class ToggleButtonComponent  {
   @Output() changed = new EventEmitter<any>();
+  @Input() checked:boolean = false;
 }

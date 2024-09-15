@@ -3,18 +3,13 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 import EmpyState from '../components/EmpyState.astro'
 import { Modal } from 'accessible-astro-components'
 import {AlertComponent } from '../components/alert.component';
-import { computed } from 'nanostores'
-import {$alertstate} from '../shared/shared';
 import {AngSpeachtoText} from '../components/AngSpeachtoText/AngSpeachtoText';
 import Icon from 'astro-icon';
+
 const { show } = Astro.props
 
 let toshow:boolean = false;
 
-function test(){
-toshow = !toshow;
-console.log('toshow ',toshow);
-}
 ---
 
 <DefaultLayout title="Products">
@@ -26,13 +21,14 @@ console.log('toshow ',toshow);
     <div class="space-content">
       <h2>Analisys type</h2>
       <AngSpeachtoText client:visible client:only/>
-
+      <!-- <button ></button> -->  
+    <div id="notice" style="display: none">
       <EmpyState>
-        You haven't added any products yet. Start by adding some.
+        The Scope is ready to be evalauted, save it before continuing.
       </EmpyState>
-      <button ></button>
-
-      <button id="modal-trigger" class="button color-secondary">Add your first product</button>
+    </div>
+      
+      <button id="modal-trigger" class="button color-secondary">Add your opportunity</button>
       <Modal
         triggerId="modal-trigger"
         title="Add product"
@@ -43,3 +39,16 @@ console.log('toshow ',toshow);
     </div>
   </section>
 </DefaultLayout>
+<script is:inline src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<script >
+  import {notice} from '../shared/shared';
+  let shownotice!:any;
+
+  notice.subscribe(show => {
+console.log('show ', show);
+shownotice = show;
+ show ? document.getElementById('notice')!.style.display = 'block' : '';
+
+});
+</script>

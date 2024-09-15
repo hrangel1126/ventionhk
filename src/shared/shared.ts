@@ -1,8 +1,8 @@
 import { atom } from 'nanostores';
 
-export const $alertstate = atom<boolean>(false);
+export const notice = atom(false);
 
-export function alert(state:boolean){
-    $alertstate.set($alertstate.get());
-   console.log('seta ', $alertstate.value);
-}
+// export function sharedata(state:boolean){
+//     $alertstate.set(state);
+//    console.log('seta ', $alertstate.value);
+// }

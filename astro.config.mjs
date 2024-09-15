@@ -6,9 +6,11 @@ import analogjsangular from '@analogjs/astro-angular';
 import node from '@astrojs/node';
 import vercel from '@astrojs/vercel/serverless';
 
+import db from '@astrojs/db';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [analogjsangular()],
+  integrations: [analogjsangular(), db()],
   output: 'server',
   prefetch: true,
 

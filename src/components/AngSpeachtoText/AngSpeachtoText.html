@@ -9,7 +9,7 @@
       <div class="col-md-12">
     <p class="size-20">Listen to Conversation</p>
             <span class="material-symbols-outlined"></span>
-      <toggle-button (changed)="change($event)"></toggle-button>
+      <toggle-button (changed)="change($event)" [checked]="wave"></toggle-button>
 
       </div>
 </div>
@@ -58,28 +58,35 @@
                   <div class="box box1"></div>
 
                 </div>
+
                 <button *ngIf="wave" class="button-24" role="button" (click)="stopListening()">Finalize</button>
+
       </div>
 </div>
 <div class="row">
       <p class="size-20">Detail the bussiness oipportunity or paste project scope.</p>
       <div class="col-md-12">
+            <label for="speachtxt">Enter scope or details</label>
             <mat-form-field [style.fontSize]="12" style="width: 100%;">
-                  <mat-label style="margin-top: 2rem;display: block;">Enter scope or details</mat-label>
+                  <mat-label style="margin-top: 2rem;display: block;"></mat-label>
                   <textarea matInput
                             cdkTextareaAutosize
+
                             #autosize="cdkTextareaAutosize"
                             cdkAutosizeMinRows="4"
-                            [(ngModel)]="theScope"
+                            [value]="theScope"
+                            #speachtxt
+                            id="speachtxt"
                             cdkAutosizeMaxRows="20"></textarea>
                 </mat-form-field>
       </div>
-</div>
-         
-<button  (click)="startListening()">Click me</button>
-      </div>
-</div>
-      <!-- <button  (click)="start()">Click me</button> -->
 
-      <p class="output" #diagnostic><em>...diagnostic messages</em></p>
+</div>
+<button *ngIf="!wave" class="button-3" role="button" (click)="run()">Process</button>
+
+      </div>
+
+</div>
+
+       <p class="output" #diagnostic><em>...diagnostic messages</em></p>
 </div>
