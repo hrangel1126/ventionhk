@@ -21,7 +21,7 @@ interface Engineer {
     standalone: true,
     selector: 'app-engineers-list',
     templateUrl: './CandidatesList.html',
-    styleUrls: [],
+    styleUrls: ['./styles.scss'],
     imports: [NgIf, CommonModule, NgFor, CandidateCard]
 })
 export class CandidatesList implements OnInit {
