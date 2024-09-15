@@ -35,4 +35,8 @@ export class ResultsComponent  implements OnInit {
         console.log( 'initia ', this.currentsaved[0].ReqData);
         // this.loading = false;
         }
+
+        viewreq(idenx:any){
+               window.location.href = `/results?filter=${idenx}`;
+        }
 }

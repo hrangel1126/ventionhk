@@ -33,8 +33,10 @@
       </div>
       
       <div class="items-body" >
-        <div class="items-body-content" *ngFor="let inq of currentsaved[0].ReqData;  let i = index;">
-          <span>ID {{10 + i }}: {{inq.inquery.substring(0,35)}}</span>
+        <div class="items-body-content" *ngFor="let inq of currentsaved[0].ReqData;  let i = index;" (click)="viewreq(i)" >
+          <span>
+            <div><b>ID {{10 + i }}</b></div>
+            <b>Request:</b> {{inq.inquery}}</span>
           <i class="fa fa-angle-right"></i>
         </div>
       </div>
