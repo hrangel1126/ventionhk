@@ -1,0 +1,449 @@
+[
+  {
+    "name": "Adair Hernandez",
+    "role": "Software Engineer",
+    "experience": "3+ years",
+    "techStack": [
+      "JavaScript",
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Golang",
+      "MySQL",
+      "MongoDB",
+      "Docker",
+      "AWS",
+      "Jenkins",
+      "NestJS",
+      "Express",
+      "REST",
+      "GraphQL",
+      "React Native"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Full-Stack Engineer",
+        "company": "Usercode",
+        "duration": "2023 - Present",
+        "tech": ["React", "Tailwind", "Bootstrap", "NestJS", "Docker"]
+      },
+      {
+        "position": "Full-Stack Engineer",
+        "company": "BigLeaper",
+        "duration": "2022 - 2023",
+        "tech": ["ReactJS", "AWS", "DynamoDB"]
+      },
+      {
+        "position": "Backend Developer",
+        "company": "Capgemini",
+        "duration": "2020 - 2022",
+        "tech": ["Express", "Spring Boot", "Postgres"]
+      },
+      {
+        "position": "Full-Stack Engineer",
+        "company": "Fairwind Group",
+        "duration": "2021 - 2022",
+        "tech": ["ReactJS", "MongoDB", "Jest"]
+      }
+    ],
+    "industry": ["Technology", "SaaS", "Logistics", "Education"],
+    "keyActivities": [
+      "API development",
+      "code refactoring",
+      "requirement elicitation",
+      "writing unit and integration tests"
+    ],
+    "hourRate": "35 USD/hour",
+    "generalSummary": "A motivated software engineer with strong experience in full-stack development, specializing in JavaScript and TypeScript. Adept at working on both backend and frontend, with experience across various industries including education, logistics, and SaaS. Known for excellent code testability and performance."
+  },
+  {
+    "name": "Alexis Leon",
+    "role": "Senior Software Engineer",
+    "experience": "8+ years",
+    "techStack": [
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "React Native",
+      "Node.js",
+      "GraphQL",
+      "Golang",
+      "AWS",
+      "Terraform",
+      "Docker",
+      "PostgreSQL",
+      "MongoDB"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Full Stack Engineer",
+        "company": "Mosea (Fintech)",
+        "tech": ["Node.js", "GraphQL", "AWS", "React Native"]
+      },
+      {
+        "position": "Backend Engineer",
+        "company": "Gopuff",
+        "tech": ["Golang", "Kubernetes", "Docker", "PostgreSQL"]
+      },
+      {
+        "position": "Senior Software Engineer",
+        "company": "Remnote",
+        "tech": ["React", "Meteor.js", "AWS"]
+      },
+      {
+        "position": "Senior Software Engineer",
+        "company": "Invex Bank",
+        "tech": ["Swift", "Kotlin", "Azure"]
+      }
+    ],
+    "industry": ["Fintech", "eCommerce", "Payments", "EdTech"],
+    "keyActivities": [
+      "Prototyping mobile apps",
+      "backend architecture design",
+      "payment system integrations",
+      "team management"
+    ],
+    "hourRate": "49 USD/hour",
+    "generalSummary": "A delivery-focused full-stack engineer with deep expertise in backend and mobile applications, Alexis has built robust solutions for fintech and payments industries. His experience ranges from startups to enterprise-scale companies, where he excels in designing payment rails, risk management systems, and API integrations."
+  },
+  {
+    "name": "Diego Gonzalez",
+    "role": "Lead Software Engineer",
+    "experience": "6+ years",
+    "techStack": [
+      "Python",
+      "Java",
+      "C#",
+      "JavaScript",
+      "Django",
+      "AWS",
+      "Serverless",
+      "Docker",
+      "CI/CD",
+      "MongoDB"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Senior Developer",
+        "company": "Luxoft-Syngenta",
+        "duration": "2022 - Present",
+        "tech": ["AWS", "Serverless", "CircleCI", "Lambda", "DynamoDB"]
+      },
+      {
+        "position": "Senior Developer",
+        "company": "Autodesk",
+        "duration": "2021 - 2022",
+        "tech": ["AWS microservices", "Pandas", "Pydantic"]
+      },
+      {
+        "position": "Lead Software Engineer",
+        "company": "VMTEC-Google",
+        "duration": "2018 - 2022",
+        "tech": ["Python", "Django", "API integration"]
+      }
+    ],
+    "industry": ["Technology", "Agriculture", "AI", "Cloud Services"],
+    "keyActivities": [
+      "Building DevOps pipelines",
+      "automating monitoring",
+      "REST API development",
+      "AWS architecture"
+    ],
+    "hourRate": "50 USD/hour",
+    "generalSummary": "A lead software engineer with expertise in Python and cloud technologies, Diego specializes in building scalable systems using AWS. His focus on automation and efficiency in cloud architecture, combined with experience across industries like agriculture and AI, has made him a valuable asset for companies seeking to optimize their cloud infrastructure."
+  },
+  {
+    "name": "Guillermo Garcia",
+    "role": "Software Engineer",
+    "experience": "6+ years",
+    "techStack": [
+      ".NET",
+      "C/C++",
+      "Java",
+      "Kotlin",
+      "Scala",
+      "AWS",
+      "Docker",
+      "SQL"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Senior .NET Developer",
+        "company": "Solera",
+        "duration": "2022 - Present",
+        "tech": [".NET Framework", "SQL Server", "AWS"]
+      },
+      {
+        "position": "Scala + Java Developer",
+        "company": "Distillery",
+        "duration": "2021 - 2022",
+        "tech": ["Scala", "Akka"]
+      },
+      {
+        "position": "Sr. Developer",
+        "company": "New England Computer Solutions",
+        "duration": "2019 - 2021",
+        "tech": ["Linux", "Android", "PCI-compliant apps"]
+      }
+    ],
+    "industry": ["Fintech", "Software Development", "Payment Systems"],
+    "keyActivities": [
+      "Debugging code",
+      "adding features",
+      "application security improvement",
+      "Android/Linux embedded system development"
+    ],
+    "hourRate": "55 USD/hour",
+    "generalSummary": "A versatile software engineer with strong backend and mobile app development expertise, Guillermo has significant experience in building secure, scalable systems. He is particularly adept at working in highly regulated industries like fintech, ensuring application security and compliance."
+  },
+  {
+    "name": "Héctor Fernando Lozada",
+    "role": "Senior Backend Engineer",
+    "experience": "9+ years",
+    "techStack": [
+      "Python",
+      "PHP",
+      "Java",
+      "JavaScript",
+      "AWS",
+      "Docker",
+      "PostgreSQL",
+      "MySQL",
+      "Redis"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Senior Python/ETL Developer",
+        "company": "Modern Campus",
+        "tech": ["Python", "Celery", "AWS", "MySQL"]
+      },
+      {
+        "position": "Backend Engineer",
+        "company": "Ineed",
+        "tech": ["Python", "Django", "Java", "Terraform"]
+      },
+      {
+        "position": "Senior Python Developer",
+        "company": "Agile Engine",
+        "tech": ["Python", "Docker", "Redis"]
+      }
+    ],
+    "industry": ["EdTech", "Technology", "Cloud Services"],
+    "keyActivities": [
+      "Legacy system migration",
+      "backend development",
+      "team coordination",
+      "API development"
+    ],
+    "hourRate": "55 USD/hour",
+    "generalSummary": "Héctor has extensive experience in backend development with a focus on Python. He has been responsible for large-scale migrations and building backend systems from scratch. His expertise in cloud services and DevOps tools makes him well-suited for infrastructure-heavy projects in the tech and education sectors."
+  },
+  {
+    "name": "Ignacio Alvarez",
+    "role": "Lead Software Engineer",
+    "experience": "6+ years",
+    "techStack": [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "PHP",
+      "Angular",
+      "AWS",
+      "MongoDB",
+      "SQL"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Full Stack Developer",
+        "company": "Dealership Performance 360 CRM",
+        "tech": ["Angular", "Node.js", "AWS"]
+      },
+      {
+        "position": "Full Stack Developer",
+        "company": "TechGenies (Orchatect)",
+        "tech": ["Node.js", "Docker", "Lambda"]
+      },
+      {
+        "position": "Sr. Frontend Developer",
+        "company": "Duro Tire and Wheel",
+        "tech": ["React", "MySQL"]
+      }
+    ],
+    "industry": ["Automotive", "Technology", "Cloud Services"],
+    "keyActivities": [
+      "API development",
+      "cloud integration",
+      "upgrading front-end systems",
+      "IoT development"
+    ],
+    "hourRate": "50 USD/hour",
+    "generalSummary": "A skilled full-stack developer with strong expertise in JavaScript frameworks, Ignacio has consistently delivered high-quality software in industries ranging from automotive to cloud services. His ability to work across the stack and manage complex integrations has proven valuable in driving projects to completion."
+  },
+  {
+    "name": "Jesus Franco",
+    "role": "Lead Software Engineer",
+    "experience": "12+ years",
+    "techStack": [
+      "PHP",
+      "JavaScript",
+      "TypeScript",
+      "Ruby on Rails",
+      "Node.js",
+      "AWS",
+      "GraphQL",
+      "Docker"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Senior Full-Stack Engineer",
+        "company": "Wabbi Software",
+        "duration": "2023",
+        "tech": ["Nest.js", "PostgreSQL", "Node.js"]
+      },
+      {
+        "position": "Technical Lead",
+        "company": "Levo",
+        "duration": "2021 - 2023",
+        "tech": ["Laravel", "Firebase", "AWS"]
+      },
+      {
+        "position": "Solution Architect",
+        "company": "IJALTI",
+        "duration": "2019",
+        "tech": ["Ruby on Rails", "OAuth 2.0"]
+      }
+    ],
+    "industry": ["Fintech", "SaaS", "DevSecOps"],
+    "keyActivities": [
+      "Microservices development",
+      "event sourcing",
+      "DevOps automation",
+      "API development"
+    ],
+    "hourRate": "50 USD/hour",
+    "generalSummary": "Jesus has a wide range of expertise in full-stack and DevSecOps roles, excelling at creating secure and scalable architectures. His experience spans multiple industries, including fintech and SaaS, where he has led teams in creating robust backend systems and DevOps pipelines."
+  },
+  {
+    "name": "José Angel García Ruiz",
+    "role": "Lead Software Engineer",
+    "experience": "6+ years",
+    "techStack": [
+      "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "React",
+      "Python",
+      "MongoDB",
+      "AWS",
+      "PostgreSQL",
+      "Redis"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Full Stack Software Engineer",
+        "company": "Infogrid AQ",
+        "tech": ["Node.js", "React", "AWS"]
+      },
+      {
+        "position": "Tech Lead Developer",
+        "company": "DevStudio",
+        "tech": ["React.js", "WebSockets", "MongoDB"]
+      },
+      {
+        "position": "Senior Software Developer",
+        "company": "Position.ai",
+        "tech": ["Next.js", "Prisma", "AWS"]
+      }
+    ],
+    "industry": ["SaaS", "AI", "IoT"],
+    "keyActivities": [
+      "API architecture",
+      "microservices development",
+      "performance optimization",
+      "cloud cost reduction"
+    ],
+    "hourRate": "50 USD/hour",
+    "generalSummary": "José Angel is a highly skilled lead engineer with expertise in full-stack development, specializing in AI and IoT applications. His focus on performance optimization and cost-effective cloud solutions makes him a valuable asset in the SaaS and AI sectors."
+  },
+  {
+    "name": "Spirin Konstantin",
+    "role": "Lead Software Engineer",
+    "experience": "5+ years",
+    "techStack": [
+      "Python",
+      "Vue.js",
+      "Django",
+      "Docker",
+      "PostgreSQL",
+      "Redis",
+      "AWS"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Software Developer",
+        "company": "Sberbank",
+        "tech": ["Python", "Django", "Vue.js"]
+      },
+      {
+        "position": "Software Developer",
+        "company": "KamaGames",
+        "tech": ["Python", "Docker", "PostgreSQL"]
+      },
+      {
+        "position": "Jr. Software Developer",
+        "company": "Mail.ru Group",
+        "tech": ["Python", "Django", "REST APIs"]
+      }
+    ],
+    "industry": ["Fintech", "Gaming", "Banking"],
+    "keyActivities": [
+      "Microservices architecture",
+      "API development",
+      "internal tools automation"
+    ],
+    "hourRate": "52 USD/hour",
+    "generalSummary": "Spirin is a Python expert with a strong background in building scalable web applications. His experience includes developing tools for major financial institutions and gaming companies, where he focused on API integration, automation, and microservice development."
+  },
+  {
+    "name": "Victor Gil",
+    "role": "Senior Software Engineer",
+    "experience": "13+ years",
+    "techStack": [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "GraphQL",
+      "Docker",
+      "C#",
+      ".NET"
+    ],
+    "rolesCompanies": [
+      {
+        "position": "Senior Software Engineer",
+        "company": "Backbase",
+        "tech": ["JavaScript", "Angular", "Rxjs"]
+      },
+      {
+        "position": "Software Developer",
+        "company": "AgileThought",
+        "tech": ["Angular", "React", "NodeJS"]
+      },
+      {
+        "position": "Full Stack Engineer",
+        "company": "4th Source",
+        "tech": ["C#", "ASP.NET", "SQL Server"]
+      }
+    ],
+    "industry": ["Fintech", "Technology", "Consulting"],
+    "keyActivities": [
+      "Front-end development",
+      "mentoring junior developers",
+      "API integration",
+      "scalable web applications"
+    ],
+    "hourRate": "50 USD/hour",
+    "generalSummary": "With over 13 years of experience, Victor is an experienced senior software engineer with a deep focus on front-end development. He has led teams in developing complex web applications in fintech and consulting, with a particular emphasis on building reusable, scalable components and mentoring junior developers."
+  }
+]
