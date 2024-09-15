@@ -70,11 +70,6 @@ export class CandidatesList implements OnInit {
         } else {
             throw new StorageError('ReqData was not found in local')
         }
-        // For now, return a mock data
-        // return [[
-        //     { candidateName: 'John Doe', description: 'Experienced developer', topSkills: 'JavaScript, Angular', hourRate: '50', percentage: '95%' },
-        //     { candidateName: 'Jane Smith', description: 'Full-stack engineer', topSkills: 'Python, React', hourRate: '60', percentage: '90%' }
-        // ]];
     }
 
     next(): void {

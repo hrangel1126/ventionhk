@@ -6,7 +6,7 @@ import {CommonModule, NgFor, NgForOf, NgIf} from "@angular/common";
     standalone: true,
     selector: 'app-engineer-card',
     templateUrl: './CandidateCard.html',
-    styleUrls: [],
+    styleUrls: ['./styles.scss'],
     imports: [NgIf, CommonModule, NgForOf]
 })
 export class CandidateCard {

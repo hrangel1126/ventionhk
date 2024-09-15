@@ -6,11 +6,11 @@
             <div *ngIf="error">Error: {{ error }}</div>
             <ng-container *ngIf="!(loading || error)">
                 <app-engineer-card *ngFor="let engineer of engineers$ | async" [engineer]="engineer"></app-engineer-card>
-                <div class="navigation">
-                    <button (click)="prev()">Previous</button>
-                    <button (click)="next()">Next</button>
-                </div>
             </ng-container>
+        </div>
+        <div class="navigation">
+            <button (click)="prev()">Previous</button>
+            <button (click)="next()">Next</button>
         </div>
     </div>
 </section>
