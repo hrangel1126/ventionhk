@@ -240,6 +240,15 @@ telo(){
   });
 }
   run(){
+    if ((this.speachtxt.nativeElement.value||'').trim().length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Hmmmm...",
+        text: "We're sorry, but we cannot process empty requests",
+      });
+
+      return
+    }
     Swal.fire({
       title: "Processing...",
       imageUrl: "/loading.gif",
