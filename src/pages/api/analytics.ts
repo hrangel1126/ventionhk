@@ -11,35 +11,46 @@ const res = (body: object) =>
     status: 200,
   });
 
+const resError = (body: object) =>
+  new Response(JSON.stringify(body), {
+    status: 500,
+  });
+
 export const POST: APIRoute = async ({ request }) => {
   if (request.headers.get('Content-Type') === 'application/json') {
-    const body = await request.json();
-    const transcription = body.transcription;
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      messages: [
-        {
-          role: 'system',
-          content: systemRole,
-        },
-        {
-          role: 'system',
-          content: summaryCvs,
-        },
-        {
-          role: 'user',
-          content: `The client requirements are available here in the next conversation: ${transcription}`,
-        },
-        {
-          role: 'system',
-          content: output,
-        },
-      ],
-    });
+    try {
+      const body = await request.json();
+      const transcription = body.transcription;
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o',
+        messages: [
+          {
+            role: 'system',
+            content: systemRole,
+          },
+          {
+            role: 'system',
+            content: summaryCvs,
+          },
+          {
+            role: 'user',
+            content: `The client requirements are available here in the next conversation: ${transcription}`,
+          },
+          {
+            role: 'system',
+            content: output,
+          },
+        ],
+      });
 
-    console.log(JSON.parse(completion.choices[0].message.content || ''));
+      console.log(JSON.parse(completion.choices[0].message.content || ''));
 
-    return res(JSON.parse(completion.choices[0].message.content || ''));
+      return res(JSON.parse(completion.choices[0].message.content || ''));
+    } catch (error) {
+      return resError({
+        error: 'Something went wrong. Please try again later.',
+      });
+    }
   }
   return new Response(null, { status: 400 });
 };
