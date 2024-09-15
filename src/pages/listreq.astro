@@ -1,18 +1,20 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import {CandidatesList} from "../components/AngListCandidates/CandidatesList";
+import {ResultsComponent} from '../components/Results/Results.component';
 ---
 
 <DefaultLayout title="Results">
   <section>
-    <h1>Our results 🧑‍🚀</h1>
+    <h1>Inquiries processed 🧑‍🚀</h1>
     <p class="size-20">These are results</p>
   </section>
-  <h2>Results</h2>
   <section class="margin-32">
-    <CandidatesList client:visible client:only />
+    <div class="space-content">
+  <h1>Inquiries</h1>
+    </div>
   </section>
   <section>
+    <ResultsComponent client:visible  />
     </section>
 </DefaultLayout>
 
