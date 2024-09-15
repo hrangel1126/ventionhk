@@ -46,8 +46,9 @@ export class CandidatesList implements OnInit {
         this.loading = true;
         this.error = null;
         try {
-            const list = this.loadEngineers(); // Assuming this method exists and returns Engineer[][]
+            const list = this.loadEngineers();
             this.engineersSubject.next(list);
+            this.currentIndex = list.length - 1;
             this.loading = false;
         } catch (error) {
             this.error = error instanceof Error ? error.message : 'An unknown error occurred';
@@ -61,8 +62,8 @@ export class CandidatesList implements OnInit {
         if (storageData) {
             const parsedData: StorageData[] = JSON.parse(storageData);
             console.log(parsedData);
-            if (parsedData.length > 0) {
-                const candidates = parsedData.map(request => request.candidates)
+            if (parsedData?.ReqData?.length > 0) {
+                const candidates = parsedData.ReqData.map(request => request.candidates)
                 return candidates as unknown as Engineer[][];
             }
             console.log({ parsedData })
