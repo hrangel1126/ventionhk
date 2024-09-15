@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
   
   })
 export class ResultsComponent  implements OnInit {
+    show?:boolean = false;
     currentsaved:any[]=[];
     loading:boolean = true;
     ngOnInit():void {
@@ -30,7 +31,12 @@ export class ResultsComponent  implements OnInit {
     getsaved(){
 
         let newObject:any = localStorage.getItem("ReqData");
-        console.log(JSON.parse(newObject));
+        console.log('new ', newObject);
+        if(newObject == null){
+            this.show = true;
+            return
+        }
+
         this.currentsaved.push(JSON.parse(newObject));
         console.log( 'initia ', this.currentsaved[0].ReqData);
         // this.loading = false;

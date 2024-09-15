@@ -29,6 +29,7 @@
     <div class="items" >
       <div class="items-head">
         <p>Inqueries Processed</p>
+        <p *ngIf="show">You haven't made any inquery yet. 😔</p>
         <hr>
       </div>
       
@@ -42,7 +43,7 @@
       </div>
    
     </div>
-    <div class="items" *ngIf="currentsaved[0].ReqData >= 0" >
+    <div class="items" *ngIf="currentsaved[0].ReqData >0" >
         <div class="items-head">
           <p>Inqueries Processed</p>
           <hr>
