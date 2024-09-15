@@ -1,4 +1,13 @@
 <!-- engineers-list.component.html -->
+
+<section *ngIf="currentMeta$ | async as metadata">
+<div class="opportunity-info">
+    <p class="card__reason"><strong>Reason:</strong> {{ metadata.reason }}</p>
+    <p class="card__inquiry"><strong>Inquiry:</strong> {{ metadata.inquery }}</p>
+    <p class="card__team-cost"><strong>Cost of Team:</strong> {{ metadata.costOfTeam }}</p>
+</div>
+
+</section>
 <section class="margin-32">
     <div class="engineer-cards">
         <div class="space-content">

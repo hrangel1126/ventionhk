@@ -25,6 +25,8 @@ interface Engineer {
     imports: [NgIf, CommonModule, NgFor, CandidateCard]
 })
 export class CandidatesList implements OnInit {
+    private allMeta$ = new BehaviorSubject([])
+    currentMeta$: Observable<any>
     private engineersSubject = new BehaviorSubject<Engineer[][]>([]);
     engineers$: Observable<Engineer[]>;
     currentIndex = 0;
@@ -49,6 +51,10 @@ export class CandidatesList implements OnInit {
             const list = this.loadEngineers();
             this.engineersSubject.next(list);
             this.currentIndex = list.length - 1;
+            const allMeta = this.allMeta$.getValue()
+            this.currentMeta$ = this.allMeta$.pipe(
+                map(metaDataList => metaDataList[this.currentIndex] || {})
+            )
             this.loading = false;
         } catch (error) {
             this.error = error instanceof Error ? error.message : 'An unknown error occurred';
@@ -64,6 +70,9 @@ export class CandidatesList implements OnInit {
             console.log(parsedData);
             if (parsedData?.ReqData?.length > 0) {
                 const candidates = parsedData.ReqData.map(request => request.candidates)
+
+                this.allMeta$.next(parsedData.ReqData);
+
                 return candidates as unknown as Engineer[][];
             }
             console.log({ parsedData })
@@ -78,6 +87,9 @@ export class CandidatesList implements OnInit {
         this.engineers$ = this.engineersSubject.pipe(
             map(engineers => engineers[this.currentIndex] || [])
         );
+        this.currentMeta$ = this.allMeta$.pipe(
+            map(metaDataList => metaDataList[this.currentIndex] || {})
+        )
     }
 
     prev(): void {
@@ -85,5 +97,8 @@ export class CandidatesList implements OnInit {
         this.engineers$ = this.engineersSubject.pipe(
             map(engineers => engineers[this.currentIndex] || [])
         );
+        this.currentMeta$ = this.allMeta$.pipe(
+            map(metaDataList => metaDataList[this.currentIndex] || {})
+        )
     }
 }
