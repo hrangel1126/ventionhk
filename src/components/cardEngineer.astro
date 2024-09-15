@@ -7,6 +7,7 @@ interface Engineer {
   hourRate: string;
   generalSummary: string;
 }
+interface Props extends Engineer {}
 
 const { name, role, experience, techStack, hourRate, generalSummary }: Engineer = Astro.props;
 ---

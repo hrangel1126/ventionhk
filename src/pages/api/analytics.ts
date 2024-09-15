@@ -15,6 +15,8 @@ export const POST: APIRoute = async ({ request }) => {
   if (request.headers.get('Content-Type') === 'application/json') {
     const body = await request.json();
     const transcription = body.transcription;
+
+    try {
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o',
       messages: [
@@ -37,9 +39,19 @@ export const POST: APIRoute = async ({ request }) => {
       ],
     });
 
-    console.log(JSON.parse(completion.choices[0].message.content || ''));
+      const content = completion.choices[0].message.content
+      const response = JSON.parse(content || '');
+      console.log({ response })
 
-    return res(JSON.parse(completion.choices[0].message.content || ''));
+      return res(response);
+    } catch (error) {
+      const res = {
+        error: error.message,
+        input: transcription
+      }
+      console.error(res);
+      return new Response(JSON.stringify(res), { status: 500 });
+    }
   }
   return new Response(null, { status: 400 });
 };
