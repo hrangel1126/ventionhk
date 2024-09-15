@@ -1,50 +1,128 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import EngineerCard from "./Card.jsx";
 import './styles.scss'
+import {loadEngineers} from "./loadEngineers";
+
+/**
+ * @typedef {Object} Engineer
+ * @property {string} candidateName
+ * @property {string} description
+ * @property {string} topSkills
+ * @property {string} hourRate
+ * @property {string} percentage
+ */
+
+/**
+ * @typedef {Object} EngineersState
+ * @property {Engineer[][]} engineers
+ * @property {number} currentIndex
+ * @property {boolean} loading
+ * @property {string|null} error
+ */
+
+/**
+ * @typedef {Object} FetchStartAction
+ * @property {'FETCH_START'} type
+ */
+
+/**
+ * @typedef {Object} FetchSuccessAction
+ * @property {'FETCH_SUCCESS'} type
+ * @property {Engineer[][]} payload
+ */
+
+/**
+ * @typedef {Object} FetchErrorAction
+ * @property {'FETCH_ERROR'} type
+ * @property {string} payload
+ */
+
+/**
+ * @typedef {Object} NextAction
+ * @property {'NEXT'} type
+ */
+
+/**
+ * @typedef {Object} PrevAction
+ * @property {'PREV'} type
+ */
+
+/**
+ * @typedef {FetchStartAction | FetchSuccessAction | FetchErrorAction | NextAction | PrevAction} EngineersAction
+ */
+
+/** @type {EngineersState} */
+const initialState = {
+  engineers: [],
+  currentIndex: 0,
+  loading: false,
+  error: null,
+};
+
+/**
+ * @param {EngineersState} state
+ * @param {EngineersAction} action
+ * @returns {EngineersState}
+ */
+function engineersReducer(state , action) {
+  switch (action.type) {
+    case 'FETCH_START':
+      return {...state, loading: true, error: null};
+    case 'FETCH_SUCCESS':
+      console.log(action);
+      const currentResult = action.payload[state.currentIndex];
+      console.log(currentResult);
+      const candidates = currentResult.candidates;
+      console.log(candidates);
+      return {...state, loading: false, engineers: candidates };
+    case 'FETCH_ERROR':
+      return {...state, loading: false, error: action.payload};
+    case 'NEXT':
+      console.log('NEXT')
+      return {...state, currentIndex: (state.currentIndex + 1) % state.engineers.length};
+    case 'PREV':
+      console.log('PREV')
+      return {...state, currentIndex: (state.currentIndex - 1 + state.engineers.length) % state.engineers.length};
+    default:
+      return state;
+  }
+}
 
 const EngineersList = () => {
-  const engineers = [
-    {
-      "candidateName": "Adair Hernandez",
-      "description": "Adair has strong full-stack development skills with JavaScript frameworks, making him ideal for building both the frontend and backend. His experience with Docker and AWS ensures scalable infrastructure.",
-      "percentage": "70%",
-      "topSkills": "JavaScript, React, TypeScript, Node.js, AWS, Docker",
-      "hourRate": "35/USD"
-    }, {
-      "candidateName": "Alexis Leon",
-      "description": "Alexis brings robust backend and mobile application expertise, crucial for building a reliable and scalable service infrastructure. With experience in Node.js, AWS, and payment integration, he is perfect for the job.",
-      "percentage": "80%",
-      "topSkills": "JavaScript, TypeScript, Node.js, React Native, GraphQL, AWS",
-      "hourRate": "49/USD"
-    }, {
-      "candidateName": "Jose Angel García Ruiz",
-      "description": "Jose Angel excels in full-stack development focused on performance optimization and cost-effective cloud solutions, ideal for a high-demand service like a ride-sharing app.",
-      "percentage": "75%",
-      "topSkills": "JavaScript, TypeScript, Node.js, React, AWS, MongoDB",
-      "hourRate": "50/USD"
+  const [state, dispatch] = useReducer(engineersReducer, initialState);
+
+  useEffect(() => {
+    dispatch({type: 'FETCH_START'});
+    try {
+      const list = loadEngineers()
+      dispatch({type: 'FETCH_SUCCESS', payload: list});
+    } catch (error) {
+      dispatch({type: 'FETCH_ERROR', payload: error instanceof Error ? error.message : 'An unknown error occurred'});
     }
-  ]
-  // const [engineers, setEngineers] = useState<Engineer[]>([]);
-  // useEffect(() => {
-  //     loadEngineers(setEngineers)
-  // }, []);
+  }, []);
 
+  if (state.loading) {
+    return <div>Loading...</div>;
+  }
 
-  // const currentData = state.context.engineers[state.context.index];
-  // const engineers = currentData ? currentData.candidates : [];
+  if (state.error) {
+    return <div>Error: {state.error}</div>;
+  }
+
+  const engineers = state.engineers || [];
 
   return (
     <section className="margin-32">
       <div className="engineer-cards">
         <div className="space-content">
           {engineers.map((engineer, index) => (
-              <EngineerCard key={index}
-                {...engineer} />
+            <EngineerCard key={index}
+                          {...engineer} />
           ))}
-          {/*<div className="navigation">*/}
-          {/*    <button onClick={() => send({ type: 'PREV' })}>Previous</button>*/}
-          {/*    <button onClick={() => send({ type: 'NEXT' })}>Next</button>*/}
-          {/*</div>*/}
+          <div className="navigation">
+              <button onClick={() => dispatch({ type: 'PREV' })}>Previous</button>
+              <button onClick={() => dispatch({ type: 'NEXT' })}>Next</button>
+          </div>
         </div>
       </div>
     </section>

@@ -7,8 +7,6 @@ export type Engineer = {
     percentage: string;
 }
 
-export type StorageData = {
-    ReqData: Array<{
-        candidates: Engineer[];
-    }>;
-}
+export type StorageData = Array<{
+    candidates: Engineer[];
+}>;
