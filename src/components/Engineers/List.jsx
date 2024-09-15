@@ -119,10 +119,10 @@ const EngineersList = () => {
             <EngineerCard key={index}
                           {...engineer} />
           ))}
-          <div className="navigation">
-              <button onClick={() => dispatch({ type: 'PREV' })}>Previous</button>
-              <button onClick={() => dispatch({ type: 'NEXT' })}>Next</button>
-          </div>
+        </div>
+        <div className="navigation">
+          <button onClick={() => dispatch({type: 'PREV'})}>Previous</button>
+          <button onClick={() => dispatch({type: 'NEXT'})}>Next</button>
         </div>
       </div>
     </section>
