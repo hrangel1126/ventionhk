@@ -6,13 +6,16 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@angular-eslint/recommended'
   ],
-  languageOptions: {
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      project: './tsconfig.app.json',
-      sourceType: 'module'
+  overrides: [
+    {
+      files: ['*.ts', '*.html'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.app.json',
+        sourceType: 'module'
+      }
     }
-  },
+  ],
   plugins: [
     '@typescript-eslint',
     '@angular-eslint'
