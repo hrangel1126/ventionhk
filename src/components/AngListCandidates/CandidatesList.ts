@@ -9,13 +9,7 @@ import type {StorageData} from "./model";
 
 export class StorageError extends Error {}
 
-interface Engineer {
-    candidateName: string;
-    description: string;
-    topSkills: string;
-    hourRate: string;
-    percentage: string;
-}
+import { Engineer } from './model';
 
 @Component({
     standalone: true,
@@ -64,7 +58,12 @@ export class CandidatesList implements OnInit {
             )
             this.loading = false;
         } catch (error) {
-            this.error = error instanceof Error ? error.message : 'An unknown error occurred';
+            if (error instanceof StorageError) {
+                this.error = error.message;
+            } else {
+                this.error = 'An unknown error occurred';
+                console.error('Unexpected error:', error);
+            }
             this.loading = false;
         }
     }

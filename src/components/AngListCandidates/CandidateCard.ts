@@ -10,11 +10,5 @@ import {CommonModule, NgFor, NgForOf, NgIf} from "@angular/common";
     imports: [NgIf, CommonModule, NgForOf]
 })
 export class CandidateCard {
-    @Input() engineer!: {
-        candidateName: string;
-        percentage: string;
-        description: string;
-        topSkills: string;
-        hourRate: string;
-    };
+    @Input() engineer!: Engineer;
 }
