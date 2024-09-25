@@ -1,11 +1,10 @@
-
-// engineers-list.component.ts
 import {Component, Input, OnInit} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {CommonModule, NgFor, NgIf} from "@angular/common";
 import {CandidateCard} from "./CandidateCard";
 import type {StorageData} from "./model";
+import { StorageService, Candidate, RequestData } from '../../services/storage.service';
 
 export class StorageError extends Error {}
 
@@ -35,7 +34,7 @@ export class CandidatesList implements OnInit {
     loading = false;
     error: string | null = null;
 
-    constructor() {
+    constructor(private storageService: StorageService) {
         this.engineers$ = this.engineersSubject.pipe(
             map(engineers => engineers[this.currentIndex] || [])
         );
@@ -43,50 +42,31 @@ export class CandidatesList implements OnInit {
 
     ngOnInit(): void {
         this.fetchEngineers();
-        this.engineers$.subscribe(console.warn)
     }
 
     fetchEngineers(): void {
         this.loading = true;
         this.error = null;
-        try {
-            const list = this.loadEngineers();
-            this.engineersSubject.next(list);
-            if (this.filterIndex === -1) {
-                this.currentIndex = list.length - 1;
-            } else {
-                this.currentIndex = this.filterIndex
+        this.storageService.getData().subscribe(
+            (data) => {
+                if (data && data.ReqData.length > 0) {
+                    const candidates = data.ReqData.map(request => request.candidates);
+                    this.engineersSubject.next(candidates);
+                    this.allMeta$.next(data.ReqData);
+                    this.currentIndex = this.filterIndex === -1 ? candidates.length - 1 : this.filterIndex;
+                    this.currentMeta$ = this.allMeta$.pipe(
+                        map(metaDataList => metaDataList[this.currentIndex] || {})
+                    );
+                } else {
+                    this.error = 'No engineers data found';
+                }
+                this.loading = false;
+            },
+            (error) => {
+                this.error = 'An error occurred while fetching data';
+                this.loading = false;
             }
-            console.log({ filterIndex: this.filterIndex, current: this.currentIndex })
-            const allMeta = this.allMeta$.getValue()
-            this.currentMeta$ = this.allMeta$.pipe(
-                map(metaDataList => metaDataList[this.currentIndex] || {})
-            )
-            this.loading = false;
-        } catch (error) {
-            this.error = error instanceof Error ? error.message : 'An unknown error occurred';
-            this.loading = false;
-        }
-    }
-
-    loadEngineers(): Engineer[][] {
-        // Implement this method to load engineers data
-        const storageData = localStorage.getItem('ReqData');
-        if (storageData) {
-            const parsedData: StorageData[] = JSON.parse(storageData);
-            console.log(parsedData);
-            if (parsedData?.ReqData?.length > 0) {
-                const candidates = parsedData.ReqData.map(request => request.candidates)
-
-                this.allMeta$.next(parsedData.ReqData);
-
-                return candidates as unknown as Engineer[][];
-            }
-            console.log({ parsedData })
-            throw new StorageError('No engineers data found')
-        } else {
-            throw new StorageError('ReqData was not found in local')
-        }
+        );
     }
 
     next(): void {
