@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild, type OnInit, inject, Injector } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
-import { CommonModule, NgFor, NgIf, isPlatformBrowser } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,36 +16,42 @@ import { MatSelectModule } from '@angular/material/select';
     templateUrl:'./Result.component.html',
     styleUrls: ['./Result.component.scss'],
  
-    imports: [NgIf,CommonModule, NgFor, FormsModule, CommonModule,MatFormFieldModule, MatSelectModule, MatInputModule, TextFieldModule],
-  
-  })
-export class ResultsComponent  implements OnInit {
-    show?:boolean = false;
-    currentsaved:any[]=[];
-    loading:boolean = true;
-    private storageService = inject(StorageService);
+  imports: [
+    NgIf,
+    CommonModule,
+    NgFor,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    TextFieldModule,
+  ],
+})
+export class ResultsComponent implements OnInit {
+  show?: boolean = false;
+  currentsaved: any[] = [];
+  loading: boolean = true;
+  private storageService = inject(StorageService);
 
-    ngOnInit(): void {
-        this.getsaved();
+  ngOnInit(): void {
+    this.getsaved();
+  }
 
+  // retrieve data
+  getsaved() {
+    const newObject = this.storageService.getData();
+    console.log('new ', newObject);
+    if (newObject == null) {
+      this.show = true;
+      return;
     }
 
-// retrive data
-    getsaved(){
+    this.currentsaved.push(JSON.parse(newObject));
+    console.log('initia ', this.currentsaved[0].ReqData);
+    // this.loading = false;
+  }
 
-        const newObject = this.storageService.getData();
-        console.log('new ', newObject);
-        if (newObject == null) {
-            this.show = true;
-            return
-        }
-
-        this.currentsaved.push(JSON.parse(newObject));
-        console.log( 'initia ', this.currentsaved[0].ReqData);
-        // this.loading = false;
-        }
-
-        viewreq(idenx:any){
-               window.location.href = `/results?filter=${idenx}`;
-        }
+  viewreq(idenx: any) {
+    window.location.href = `/results?filter=${idenx}`;
+  }
 }

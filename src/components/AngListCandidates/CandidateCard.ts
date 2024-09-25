@@ -1,6 +1,6 @@
 // engineer-card.component.ts
 import { Component, Input } from '@angular/core';
-import {CommonModule, NgFor, NgForOf, NgIf} from "@angular/common";
+import { CommonModule, NgForOf, NgIf } from '@angular/common';
 
 @Component({
     standalone: true,

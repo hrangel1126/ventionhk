@@ -4,7 +4,7 @@ import { Component, Input, OnInit, inject } from '@angular/core';
 import { StorageService } from '../../services/storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {CommonModule, NgFor, NgIf} from "@angular/common";
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import {CandidateCard} from "./CandidateCard";
 import type {StorageData} from "./model";
 
@@ -20,10 +20,10 @@ import { Engineer } from './model';
     imports: [NgIf, CommonModule, NgFor, CandidateCard]
 })
 export class CandidatesList implements OnInit {
-    @Input() filterIndex = -1
+    @Input() filterIndex = -1;
 
-    private allMeta$ = new BehaviorSubject([])
-    currentMeta$: Observable<any>
+    private allMeta$ = new BehaviorSubject([]);
+    currentMeta$: Observable<any>;
     private engineersSubject = new BehaviorSubject<Engineer[][]>([]);
     engineers$: Observable<Engineer[]>;
     currentIndex = 0;
