@@ -5,9 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-
-
-
+import { StorageService, RequestData } from '../../services/storage.service';
 
 @Component({
     selector: 'app-speach',
@@ -19,30 +17,36 @@ import { MatSelectModule } from '@angular/material/select';
   
   })
 export class ResultsComponent  implements OnInit {
-    show?:boolean = false;
-    currentsaved:any[]=[];
-    loading:boolean = true;
-    ngOnInit():void {
-        this.getsaved();
+    show = false;
+    currentsaved: RequestData[] = [];
+    loading = true;
 
+    constructor(private storageService: StorageService) {}
+
+    ngOnInit(): void {
+        this.getsaved();
     }
 
-// retrive data
-    getsaved(){
+    getsaved() {
+        this.storageService.getData().subscribe(
+            (data) => {
+                if (data && data.ReqData.length > 0) {
+                    this.currentsaved = data.ReqData;
+                    this.show = false;
+                } else {
+                    this.show = true;
+                }
+                this.loading = false;
+            },
+            (error) => {
+                console.error('Error fetching data:', error);
+                this.show = true;
+                this.loading = false;
+            }
+        );
+    }
 
-        let newObject:any = localStorage.getItem("ReqData");
-        console.log('new ', newObject);
-        if(newObject == null){
-            this.show = true;
-            return
-        }
-
-        this.currentsaved.push(JSON.parse(newObject));
-        console.log( 'initia ', this.currentsaved[0].ReqData);
-        // this.loading = false;
-        }
-
-        viewreq(idenx:any){
+    viewreq(idenx:any){
                window.location.href = `/results?filter=${idenx}`;
         }
 }

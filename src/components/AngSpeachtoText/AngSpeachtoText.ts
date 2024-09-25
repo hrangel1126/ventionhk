@@ -18,7 +18,7 @@ declare var document: Document;
 
 declare var global:any;
 
-
+import { StorageService, RequestData } from '../../services/storage.service';
 
 @Component({
     selector: 'app-speach',
@@ -61,7 +61,7 @@ currentsaved:any[]=[];
   word = [ 'finalize' , 'DevOps' , 'Angular', 'Fintech', 'React', 'Pyhton', 'Agile', 'PMP', 'MongoDB' ];
   grammar = '#JSGF V1.0; grammar itwords; public <itwords> = ' + this.word.join(' | ') + ' ;'
 
-  constructor(){
+  constructor(private storageService: StorageService) {
     if (typeof window === 'undefined') {
         global.window = {}
     }
@@ -75,6 +75,11 @@ currentsaved:any[]=[];
       this.vSearch = new webkitSpeechRecognition();
     }
 
+    this.storageService.getData().subscribe(data => {
+      if (data) {
+        this.currentsaved = data.ReqData;
+      }
+    });
   }
 // toggle to use dictation speach recognition
   change(state:any){
@@ -265,25 +270,11 @@ telo(){
     };
      
     fetch('/api/analytics', options)
-      .then((response) => {
-        const fdata = response.json();
-        console.log('priemr then ', fdata);
-        return fdata;
-      })
-      .then((response) => {
-        console.log('priemr sec ', response);
-    
-        let newObject:any = localStorage.getItem("ReqData");
-            console.log(JSON.parse(newObject));
-          if(newObject == null){
-            newObject = '{"ReqData":[]}';
-          }
-          var obj = JSON.parse(newObject);
-          response.inquery = this.speachtxt.nativeElement.value;
-          obj['ReqData'].push(response);
-          newObject = JSON.stringify(obj);
-          localStorage.setItem("ReqData", newObject);
-        console.log(response)
+      .then((response) => response.json())
+      .then((response: RequestData) => {
+        response.inquery = this.speachtxt.nativeElement.value;
+        this.storageService.saveData(response);
+        console.log(response);
         Swal.close();
         setTimeout(() => {
            window.location.href = '/results'
