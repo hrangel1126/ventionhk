@@ -1,10 +1,10 @@
 module.exports = {
   root: true,
+  ...require('eslint-config-love'),
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@angular-eslint/recommended',
-    'love'
+    'plugin:@angular-eslint/recommended'
   ],
   languageOptions: {
     parser: '@typescript-eslint/parser',
