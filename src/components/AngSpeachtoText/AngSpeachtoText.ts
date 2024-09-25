@@ -1,6 +1,7 @@
 // Module Hebert Rangel
 
-import { Component, ElementRef, Input, ViewChild, type OnInit,Injectable, PLATFORM_ID, afterNextRender, inject, Injector} from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, type OnInit, inject, Injector } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
 import {CdkTextareaAutosize, TextFieldModule} from '@angular/cdk/text-field';
 
 import { CommonModule, NgFor, NgIf, isPlatformBrowser } from '@angular/common';
@@ -61,7 +62,9 @@ currentsaved:any[]=[];
   word = [ 'finalize' , 'DevOps' , 'Angular', 'Fintech', 'React', 'Pyhton', 'Agile', 'PMP', 'MongoDB' ];
   grammar = '#JSGF V1.0; grammar itwords; public <itwords> = ' + this.word.join(' | ') + ' ;'
 
-  constructor(){
+  private storageService = inject(StorageService);
+
+  constructor() {
     if (typeof window === 'undefined') {
         global.window = {}
     }
@@ -198,9 +201,11 @@ currentsaved:any[]=[];
 
   getsaved(){
 
-  let newObject:any = localStorage.getItem("ReqData");
-  console.log(JSON.parse(newObject));
-  this.currentsaved.push(JSON.parse(newObject))
+  const newObject = this.storageService.getData();
+  console.log(newObject);
+  if (newObject) {
+    this.currentsaved.push(newObject);
+  }
   }
   // save to local storage tests
 //   saverequest(){

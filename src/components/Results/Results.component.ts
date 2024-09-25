@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, ViewChild, type OnInit,Injectable, PLATFORM_ID, afterNextRender, inject, Injector} from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, type OnInit, inject, Injector } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
 import { CommonModule, NgFor, NgIf, isPlatformBrowser } from '@angular/common';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { FormsModule } from '@angular/forms';
@@ -22,7 +23,9 @@ export class ResultsComponent  implements OnInit {
     show?:boolean = false;
     currentsaved:any[]=[];
     loading:boolean = true;
-    ngOnInit():void {
+    private storageService = inject(StorageService);
+
+    ngOnInit(): void {
         this.getsaved();
 
     }
@@ -30,9 +33,9 @@ export class ResultsComponent  implements OnInit {
 // retrive data
     getsaved(){
 
-        let newObject:any = localStorage.getItem("ReqData");
+        const newObject = this.storageService.getData();
         console.log('new ', newObject);
-        if(newObject == null){
+        if (newObject == null) {
             this.show = true;
             return
         }

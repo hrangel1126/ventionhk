@@ -1,6 +1,7 @@
 
 // engineers-list.component.ts
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {CommonModule, NgFor, NgIf} from "@angular/common";
@@ -28,6 +29,8 @@ export class CandidatesList implements OnInit {
     currentIndex = 0;
     loading = false;
     error: string | null = null;
+
+    private storageService = inject(StorageService);
 
     constructor() {
         this.engineers$ = this.engineersSubject.pipe(
@@ -70,9 +73,8 @@ export class CandidatesList implements OnInit {
 
     loadEngineers(): Engineer[][] {
         // Implement this method to load engineers data
-        const storageData = localStorage.getItem('ReqData');
-        if (storageData) {
-            const parsedData: StorageData[] = JSON.parse(storageData);
+        const parsedData = this.storageService.getData();
+        if (parsedData) {
             console.log(parsedData);
             if (parsedData?.ReqData?.length > 0) {
                 const candidates = parsedData.ReqData.map(request => request.candidates)
