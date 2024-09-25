@@ -1,21 +1,16 @@
 
 // engineers-list.component.ts
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { StorageService } from '../../services/storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {CommonModule, NgFor, NgIf} from "@angular/common";
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import {CandidateCard} from "./CandidateCard";
 import type {StorageData} from "./model";
 
 export class StorageError extends Error {}
 
-interface Engineer {
-    candidateName: string;
-    description: string;
-    topSkills: string;
-    hourRate: string;
-    percentage: string;
-}
+import { Engineer } from './model';
 
 @Component({
     standalone: true,
@@ -25,15 +20,17 @@ interface Engineer {
     imports: [NgIf, CommonModule, NgFor, CandidateCard]
 })
 export class CandidatesList implements OnInit {
-    @Input() filterIndex = -1
+    @Input() filterIndex = -1;
 
-    private allMeta$ = new BehaviorSubject([])
-    currentMeta$: Observable<any>
+    private allMeta$ = new BehaviorSubject([]);
+    currentMeta$: Observable<any>;
     private engineersSubject = new BehaviorSubject<Engineer[][]>([]);
     engineers$: Observable<Engineer[]>;
     currentIndex = 0;
     loading = false;
     error: string | null = null;
+
+    private storageService = inject(StorageService);
 
     constructor() {
         this.engineers$ = this.engineersSubject.pipe(
@@ -64,16 +61,20 @@ export class CandidatesList implements OnInit {
             )
             this.loading = false;
         } catch (error) {
-            this.error = error instanceof Error ? error.message : 'An unknown error occurred';
+            if (error instanceof StorageError) {
+                this.error = error.message;
+            } else {
+                this.error = 'An unknown error occurred';
+                console.error('Unexpected error:', error);
+            }
             this.loading = false;
         }
     }
 
     loadEngineers(): Engineer[][] {
         // Implement this method to load engineers data
-        const storageData = localStorage.getItem('ReqData');
-        if (storageData) {
-            const parsedData: StorageData[] = JSON.parse(storageData);
+        const parsedData = this.storageService.getData();
+        if (parsedData) {
             console.log(parsedData);
             if (parsedData?.ReqData?.length > 0) {
                 const candidates = parsedData.ReqData.map(request => request.candidates)
